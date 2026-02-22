@@ -1,0 +1,4 @@
+private/data/admins.json
+{
+  "login": "password"
+}
