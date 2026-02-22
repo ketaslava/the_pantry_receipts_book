@@ -6,11 +6,11 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-$baseDir  = __DIR__ . "/data/receipts/";
-$listFile = $baseDir . "receipts_list.json";
+$baseDir  = __DIR__ . "/data/recipes/";
+$listFile = $baseDir . "recipes_list.json";
 
 /* ---------- SAFE LOAD ---------- */
-function load_receipt_list($file) {
+function load_recipe_list($file) {
     if (!file_exists($file)) return [];
 
     $content = file_get_contents($file);
@@ -20,7 +20,7 @@ function load_receipt_list($file) {
     return is_array($decoded) ? $decoded : [];
 }
 
-$receipts = load_receipt_list($listFile);
+$recipes = load_recipe_list($listFile);
 
 /* ---------- RANDOM UNIQUE ID ---------- */
 function generate_unique_id($existing, $baseDir) {
@@ -41,7 +41,7 @@ function generate_unique_id($existing, $baseDir) {
     return $id;
 }
 
-$newId = generate_unique_id($receipts, $baseDir); ?>
+$newId = generate_unique_id($recipes, $baseDir); ?>
 
 <?php include "patterns/header.php"; ?>
 
@@ -50,23 +50,23 @@ $newId = generate_unique_id($receipts, $baseDir); ?>
 <h2>Recepites</h2>
 
 <div style="display: flex; margin-bottom: 25px;">
-    <a class="btn" href="edit_receipt.php?id=<?= $newId ?>"> Add Receipt </a>
+    <a class="btn" href="edit_recipe.php?id=<?= $newId ?>"> Add Recipe </a>
 </div>
 
 <?php 
-$list = json_decode(file_get_contents("data/receipts/receipts_list.json"), true) ?? [];
+$list = json_decode(file_get_contents("data/recipes/recipes_list.json"), true) ?? [];
 
 foreach($list as $id):
-$data = json_decode(file_get_contents("data/receipts/$id/receipt_data.json"), true);
+$data = json_decode(file_get_contents("data/recipes/$id/recipe_data.json"), true);
 ?>
 
 <div class="card">
     <h1 style="font-size:32px"><?= htmlspecialchars($data['name']) ?></h1>
 
-    <?php $headerPath = "data/receipts/$id/header_image/" . ($data['header_image'] ?? '');
+    <?php $headerPath = "data/recipes/$id/header_image/" . ($data['header_image'] ?? '');
     if (!empty($data['header_image']) && file_exists($headerPath)): 
     ?>
-        <img src="data/receipts/<?= $id ?>/header_image/<?= htmlspecialchars($data['header_image']) ?>"
+        <img src="data/recipes/<?= $id ?>/header_image/<?= htmlspecialchars($data['header_image']) ?>"
          style="max-width:240px;border-radius:10px;">
     <?php endif; ?>
 
@@ -83,8 +83,8 @@ $data = json_decode(file_get_contents("data/receipts/$id/receipt_data.json"), tr
     <?php endif; ?>
 
     <div style="display: flex;">
-        <a class="btn" href="edit_receipt.php?id=<?= urlencode($id) ?>">Edit</a>
-        <a class="btn" href="receipt_page.php?id=<?= urlencode($id) ?>", style="margin-left: 15px;">View</a>
+        <a class="btn" href="edit_recipe.php?id=<?= urlencode($id) ?>">Edit</a>
+        <a class="btn" href="recipe_page.php?id=<?= urlencode($id) ?>", style="margin-left: 15px;">View</a>
     </div>
 </div>
 

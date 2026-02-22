@@ -1,1 +1,1 @@
-# the_pantry_receipts_book
+# the_pantry_recipes_book

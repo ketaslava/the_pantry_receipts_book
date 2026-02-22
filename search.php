@@ -1,6 +1,6 @@
 <?php include "patterns/header.php"; ?>
 
-<h2>Search Receipts</h2>
+<h2>Search Recipes</h2>
 
 <input type="text" id="searchInput" placeholder="Enter keyword(s)..." 
        style="width: 80%; padding:10px; margin-bottom:20px; border-radius:6px; border:1px solid #ccc;">
@@ -8,12 +8,12 @@
 <div id="results"></div>
 
 <?php
-// Load all receipts once and pass as JSON to JS
-$list = json_decode(file_get_contents("data/receipts/receipts_list.json"), true) ?? [];
+// Load all recipes once and pass as JSON to JS
+$list = json_decode(file_get_contents("data/recipes/recipes_list.json"), true) ?? [];
 $allData = [];
 
 foreach ($list as $id) {
-    $dataFile = "data/receipts/$id/receipt_data.json";
+    $dataFile = "data/recipes/$id/recipe_data.json";
     if (!file_exists($dataFile)) continue;
 
     $data = json_decode(file_get_contents($dataFile), true);
@@ -24,7 +24,7 @@ foreach ($list as $id) {
 ?>
 
 <script>
-const receipts = <?= json_encode($allData, JSON_UNESCAPED_UNICODE) ?>;
+const recipes = <?= json_encode($allData, JSON_UNESCAPED_UNICODE) ?>;
 
 const resultsContainer = document.getElementById('results');
 const input = document.getElementById('searchInput');
@@ -40,13 +40,13 @@ function renderResults(list) {
     for (const id in list) {
         const data = list[id];
         const card = document.createElement('a');
-        card.href = 'receipt_page.php?id=' + encodeURIComponent(id);
+        card.href = 'recipe_page.php?id=' + encodeURIComponent(id);
         card.className = 'card';
 
         let html = `<h1 style="font-size:32px">${data.name ? data.name.replace(/</g,'&lt;') : ''}</h1>`;
 
         if (data.header_image) {
-            html += `<img src="data/receipts/${id}/header_image/${data.header_image}" 
+            html += `<img src="data/recipes/${id}/header_image/${data.header_image}" 
                          style="max-width:240px;border-radius:10px;">`;
         }
 
@@ -63,16 +63,16 @@ function renderResults(list) {
     }
 }
 
-function searchReceipts() {
+function searchRecipes() {
     const query = input.value.trim().toLowerCase().split(/\s+/);
     if (!query[0]) {
-        renderResults(receipts);
+        renderResults(recipes);
         return;
     }
 
     const filtered = {};
-    for (const id in receipts) {
-        const data = receipts[id];
+    for (const id in recipes) {
+        const data = recipes[id];
         const haystack = (
             (data.name || '') + ' ' +
             (data.text || '') + ' ' +
@@ -95,11 +95,11 @@ function searchReceipts() {
     renderResults(filtered);
 }
 
-// initial render: show all receipts
-renderResults(receipts);
+// initial render: show all recipes
+renderResults(recipes);
 
 // search on input
-input.addEventListener('input', searchReceipts);
+input.addEventListener('input', searchRecipes);
 </script>
 
 <?php include "patterns/footer.php"; ?>

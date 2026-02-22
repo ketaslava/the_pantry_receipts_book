@@ -7,18 +7,17 @@ if (session_status() === PHP_SESSION_NONE) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>The Pantry Receipts Book</title>
+<title>The Pantry Recipes Book</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/the_pantry_recipes_book/css/style.css">
 </head>
 
 <body>
 <header class="header">
     <div class="container header-inner" style="padding-top: 10px; padding-bottom: 10px;">
 
-        <a href="index.php" style="width:480px; max-width: 30%;">
-            <img src="res/images/the_pantry_logo.png" style="max-width: 100%; border-radius:10px;">
+        <a href="/the_pantry_recipes_book/index.php" style="width:480px; max-width: 30%;">
+            <img src="/the_pantry_recipes_book/res/images/the_pantry_logo.png" style="max-width: 100%; border-radius:10px;">
         </a>
 
         <div style="display: flex;">

@@ -13,12 +13,12 @@
 <div id="results"></div>
 
 <?php
-// load all receipts as JSON
-$list = json_decode(file_get_contents("data/receipts/receipts_list.json"), true) ?? [];
+// load all recipes as JSON
+$list = json_decode(file_get_contents("data/recipes/recipes_list.json"), true) ?? [];
 $allData = [];
 
 foreach ($list as $id) {
-    $dataFile = "data/receipts/$id/receipt_data.json";
+    $dataFile = "data/recipes/$id/recipe_data.json";
     if (!file_exists($dataFile)) continue;
 
     $data = json_decode(file_get_contents($dataFile), true);
@@ -29,7 +29,7 @@ foreach ($list as $id) {
 ?>
 
 <script>
-const receipts = <?= json_encode($allData, JSON_UNESCAPED_UNICODE) ?>;
+const recipes = <?= json_encode($allData, JSON_UNESCAPED_UNICODE) ?>;
 const ingredientsListDiv = document.getElementById('ingredientsList');
 const resultsDiv = document.getElementById('results');
 
@@ -72,22 +72,22 @@ function searchByIngredients() {
     // compute match scores (fuzzy / partial match)
     const scored = [];
 
-    for (const id in receipts) {
-        const data = receipts[id];
-        const receiptIngredients = (data.ingredients || []).map(p => p.toLowerCase());
+    for (const id in recipes) {
+        const data = recipes[id];
+        const recipeIngredients = (data.ingredients || []).map(p => p.toLowerCase());
 
         let matchCount = 0;
 
         for (const searchP of searchIngredients) {
-            // check if any receipt product contains the search word
-            if (receiptIngredients.some(rp => rp.includes(searchP))) {
+            // check if any recipe product contains the search word
+            if (recipeIngredients.some(rp => rp.includes(searchP))) {
                 matchCount++;
             }
         }
 
         let category = 4; // default: other ingredients
-        if (matchCount === searchIngredients.length && matchCount === receiptIngredients.length) category = 1;
-        else if (matchCount === searchIngredients.length && matchCount < receiptIngredients.length) category = 2;
+        if (matchCount === searchIngredients.length && matchCount === recipeIngredients.length) category = 1;
+        else if (matchCount === searchIngredients.length && matchCount < recipeIngredients.length) category = 2;
         else if (matchCount > 0) category = 3;
 
         scored.push({id, data, matchCount, category});
@@ -112,13 +112,13 @@ function renderResults(list) {
         const data = item.data;
 
         const card = document.createElement('a');
-        card.href = 'receipt_page.php?id=' + encodeURIComponent(id);
+        card.href = 'recipe_page.php?id=' + encodeURIComponent(id);
         card.className = 'card';
 
         let html = `<h1 style="font-size:32px">${data.name ? data.name.replace(/</g,'&lt;') : ''}</h1>`;
 
         if (data.header_image) {
-            html += `<img src="data/receipts/${id}/header_image/${data.header_image}" 
+            html += `<img src="data/recipes/${id}/header_image/${data.header_image}" 
                          style="max-width:240px;border-radius:10px;">`;
         }
 
