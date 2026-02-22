@@ -1,0 +1,130 @@
+/* Page background */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4ecd8; /* soft beige */
+    color: #2f2a24;
+}
+
+/* Center column layout */
+.page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Receipt card */
+.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+
+    /* subtle paper-like pattern */
+    background: #fffdf7;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+/* Header image */
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+/* Title */
+.receipt-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Lists */
+.meta-line {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.tag {
+    display: inline-block;
+    background: #e6dcc6;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin: 2px;
+    font-size: 13px;
+}
+
+.container {
+    max-width: 820px;
+    margin: auto;
+    padding: 16px;
+}
+
+.header, .footer {
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.btn {
+    padding: 10px 14px;
+    background: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+input, textarea {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.list-block {
+    margin-bottom: 10px;
+}
+
+.list-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.list-row input {
+    flex: 1;
+}
+
+.btn-remove {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    width: 36px;
+    cursor: pointer;
+}
+
+/* simple brute-force spacer */
+.footer-spacer {
+    min-height: calc(100vh - 320px);
+}
