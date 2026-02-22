@@ -3,7 +3,7 @@
 <h2>Search Receipts</h2>
 
 <input type="text" id="searchInput" placeholder="Enter keyword(s)..." 
-       style="width:100%; padding:10px; margin-bottom:20px; border-radius:6px; border:1px solid #ccc;">
+       style="width: 80%; padding:10px; margin-bottom:20px; border-radius:6px; border:1px solid #ccc;">
 
 <div id="results"></div>
 

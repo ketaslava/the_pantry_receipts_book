@@ -15,14 +15,15 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <body>
 <header class="header">
-    <div class="container header-inner">
-        <a class="logo" href="index.php">
-            The Pantry
+    <div class="container header-inner" style="padding-top: 10px; padding-bottom: 10px;">
+
+        <a href="index.php" style="width:480px; max-width: 30%;">
+            <img src="res/images/the_pantry_logo.png" style="max-width: 100%; border-radius:10px;">
         </a>
 
-        <div class="header-actions">
+        <div style="display: flex;">
             <a class="btn" href="search.php">Search</a>
-            <a class="btn" href="search_by_ingredients.php">Search By Ingredients</a>
+            <a class="btn" href="search_by_ingredients.php" style="margin-left: 10px; white-space: nowrap;">By Ingredients</a>
             <!--a class="btn" href="admin_panel.php">Admin</a-->
         </div>
     </div>

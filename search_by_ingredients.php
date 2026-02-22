@@ -8,7 +8,7 @@
     <button type="button" class="btn" onclick="addProductRow()">+ Add</button>
 </div>
 
-<button type="button" class="btn" onclick="searchByIngredients()" style="margin-bottom:30px;">Search</button>
+<button type="button" class="btn" style="width: 100%; max-width: 100%; margin-bottom: 42px;" onclick="searchByIngredients()" style="margin-bottom:30px;">Search</button>
 
 <div id="results"></div>
 
@@ -46,6 +46,7 @@ function addProductRow(value='') {
     const delBtn = document.createElement('button');
     delBtn.type = 'button';
     delBtn.className = 'btn-remove';
+    delBtn.style="min-width: 50px; margin-left: 12px; margin-top: 6px; margin-bottom: 12px;";
     delBtn.textContent = '✕';
     delBtn.onclick = () => div.remove();
 

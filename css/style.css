@@ -85,10 +85,11 @@ body {
 
 .btn {
     padding: 10px 14px;
-    background: #4a90e2;
+    background: #ff5b58;
     color: white;
     text-decoration: none;
     border-radius: 6px;
+    border-color: transparent;
 }
 
 input, textarea {
